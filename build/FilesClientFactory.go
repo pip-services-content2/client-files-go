@@ -16,11 +16,11 @@ func NewFilesClientFactory() *FilesClientFactory {
 	}
 
 	nullClientDescriptor := cref.NewDescriptor("service-files", "client", "null", "*", "1.0")
-	// mockClientDescriptor := cref.NewDescriptor("service-files", "client", "mock", "*", "1.0")
+	mockClientDescriptor := cref.NewDescriptor("service-files", "client", "mock", "*", "1.0")
 	cmdHttpClientDescriptor := cref.NewDescriptor("service-files", "client", "commandable-http", "*", "1.0")
 
 	c.RegisterType(nullClientDescriptor, clients1.NewFilesNullClientV1)
-	// c.RegisterType(mockClientDescriptor, clients1.NewEmailTemplatesMockClientV1)
+	c.RegisterType(mockClientDescriptor, clients1.NewFilesMockClientV1)
 	c.RegisterType(cmdHttpClientDescriptor, clients1.NewFilesCommandableHttpClientV1)
 
 	return c
