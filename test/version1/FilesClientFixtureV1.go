@@ -19,14 +19,7 @@ func NewFilesClientFixtureV1(client version1.IFilesClientV1) *FilesClientFixture
 	}
 }
 
-func (c *FilesClientFixtureV1) clear() {
-	c.Client = nil
-}
-
 func (c *FilesClientFixtureV1) TestCrudOperations(t *testing.T) {
-	c.clear()
-	defer c.clear()
-
 	// Create file
 	file := version1.NewFileV1("", "test", "file-1.dat", "Test file", "111", "", time.Time{}, nil)
 
@@ -35,9 +28,9 @@ func (c *FilesClientFixtureV1) TestCrudOperations(t *testing.T) {
 	assert.NotNil(t, file1)
 
 	// Update file
-	file.Name = "new_file.dat"
+	file1.Name = "new_file.dat"
 
-	file, err = c.Client.UpdateFile(context.Background(), "123", file)
+	file, err = c.Client.UpdateFile(context.Background(), "123", file1)
 	assert.Nil(t, err)
 
 	assert.NotNil(t, file)
